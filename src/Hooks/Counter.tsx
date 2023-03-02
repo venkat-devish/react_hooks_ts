@@ -3,12 +3,12 @@ import { ChangeEvent, ReactNode, useReducer } from "react";
 enum REDUCER_ACTION_TYPE {
   INCREMENT,
   DECREMENT,
-  INCREMENTBYQTY,
+  UPDATE_TEXT,
 }
 
-type ReducerAction = {
+type ReducerType = {
   type: REDUCER_ACTION_TYPE;
-  payload?: string;
+  text?: string;
 };
 
 type ChildrenType = {
@@ -18,15 +18,15 @@ type ChildrenType = {
 const initialState = { count: 0, text: "" };
 const reducerFn = (
   state: typeof initialState,
-  action: ReducerAction
+  action: ReducerType
 ): typeof initialState => {
   switch (action.type) {
     case REDUCER_ACTION_TYPE.INCREMENT:
       return { ...state, count: state.count + 1 };
     case REDUCER_ACTION_TYPE.DECREMENT:
       return { ...state, count: state.count - 1 };
-    case REDUCER_ACTION_TYPE.INCREMENTBYQTY:
-      return { ...state, text: action.payload ?? "" };
+    case REDUCER_ACTION_TYPE.UPDATE_TEXT:
+      return { ...state, text: action.text ?? "" };
     default:
       throw new Error();
   }
@@ -41,18 +41,16 @@ const Counter = ({ children }: ChildrenType) => {
   const decrement = () => {
     dispatch({ type: REDUCER_ACTION_TYPE.DECREMENT });
   };
-  const incrementByQty = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: REDUCER_ACTION_TYPE.INCREMENTBYQTY,
-      payload: e.target.value,
-    });
+  const updateByText = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: REDUCER_ACTION_TYPE.UPDATE_TEXT, text: e.target.value });
   };
+
   return (
     <div>
-      {children(state.count)}
+      <h1>{children(state.count)}</h1>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
-      <input type="text" onChange={incrementByQty} />
+      <input type="text" onChange={updateByText} />
       <h2>{state.text}</h2>
     </div>
   );
