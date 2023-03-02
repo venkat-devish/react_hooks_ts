@@ -14,7 +14,7 @@ const fin: FibFunc = (n) => {
 
 const myNum: number = 34;
 
-const UseStateT = () => {
+const UseHooksT = () => {
   const [count, setCount] = useState<number>(0);
   const [users, setUsers] = useState<User[] | null>(null);
 
@@ -46,4 +46,4 @@ const UseStateT = () => {
   );
 };
 
-export default UseStateT;
+export default UseHooksT;

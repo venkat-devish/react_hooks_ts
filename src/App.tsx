@@ -1,7 +1,7 @@
-import UseStateT from "./Hooks/UseStateT";
+import Counter from "./Hooks/Counter";
 
 function App() {
-  return <UseStateT />;
+  return <Counter>{(num: number) => <>Current Count: {num}</>}</Counter>;
 }
 
 export default App;
