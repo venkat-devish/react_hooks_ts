@@ -1,7 +1,9 @@
-import Counter from "./Hooks/Counter";
+import ContextCount from "./components/ContextCount";
 
 function App() {
-  return <Counter>{(num: number) => <>Count is: {num}</>}</Counter>;
+  return (
+    <ContextCount>{(count: number) => <>Count is: {count} </>}</ContextCount>
+  );
 }
 
 export default App;
